@@ -46,12 +46,7 @@ public class AddressBook {
     @JoinColumn(name ="ca_fk",referencedColumnName = "id")
         private List<Address> address = new ArrayList<>();
 
-    public AddressBook(String firstName, String lastName) {
-        this.firstName=firstName;
-        this.lastName = lastName;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

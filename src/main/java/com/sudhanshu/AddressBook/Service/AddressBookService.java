@@ -20,14 +20,14 @@ public class AddressBookService {
 
     public List<AddressBook> getAllCustomers()
     {
-        List<AddressBook> addressBook = new ArrayList<AddressBook>();
-        addressBookRepository.findAll().forEach(addressBook1 -> addressBook.add(addressBook1));
-        return addressBook;
+        return addressBookRepository.findAll();
+
     }
 
-    public void save(AddressBook addressBook)
+    public AddressBook save(AddressBook addressBook)
     {
-        addressBookRepository.save(addressBook);
+        return addressBookRepository.save(addressBook);
+
     }
 
     public AddressBook findCustomerById(Long id) {
