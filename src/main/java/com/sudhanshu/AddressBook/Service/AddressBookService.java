@@ -2,6 +2,7 @@ package com.sudhanshu.AddressBook.Service;
 
 
 import com.sudhanshu.AddressBook.entity.AddressBook;
+import com.sudhanshu.AddressBook.exceptions.ResourceNotFoundException;
 import com.sudhanshu.AddressBook.repository.AddressBookRepository;
 import one.util.streamex.StreamEx;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +41,6 @@ public class AddressBookService {
 
         addressBook = StreamEx.of(addressBook)
                 .distinct(AddressBook::getFirstName)
-                .toList();
-
-        addressBook = StreamEx.of(addressBook)
                 .distinct(AddressBook::getLastName)
                 .toList();
 
@@ -57,5 +55,35 @@ public class AddressBookService {
     public void deleteCustomerById(Long id)
     {
         addressBookRepository.deleteById(id);
+    }
+
+    public void updateResource(AddressBook addressBook)
+    {
+        AddressBook newAddressBook = addressBookRepository.findCustomerById(addressBook.getId());
+
+        if(addressBook.getLastName() != null) {
+            newAddressBook.setLastName(addressBook.getLastName());
+        }
+        if(addressBook.getContactNumber() != null) {
+            newAddressBook.setContactNumber(addressBook.getContactNumber());
+        }
+        if(addressBook.getFirstName() != null) {
+            newAddressBook.setFirstName(addressBook.getFirstName());
+        }
+
+        if(addressBook.getEmailId() != null) {
+            newAddressBook.setEmailId(addressBook.getEmailId());
+        }
+        if(addressBook.getPinCode() != null) {
+            newAddressBook.setPinCode(addressBook.getPinCode());
+        }
+        if(addressBook.getAddress() != null) {
+            newAddressBook.setAddress(addressBook.getAddress());
+        }
+        if(addressBook.getAddressType() != null) {
+            newAddressBook.setAddressType(addressBook.getAddressType());
+        }
+
+        addressBookRepository.save(newAddressBook);
     }
 }

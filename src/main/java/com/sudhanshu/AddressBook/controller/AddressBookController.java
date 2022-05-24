@@ -1,7 +1,9 @@
 package com.sudhanshu.AddressBook.controller;
 
 import com.sudhanshu.AddressBook.Service.AddressBookService;
+import com.sudhanshu.AddressBook.Service.NamesService;
 import com.sudhanshu.AddressBook.entity.AddressBook;
+import com.sudhanshu.AddressBook.entity.Names;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ public class AddressBookController {
 
     @Autowired
     private AddressBookService addressBookService;
+
+    @Autowired
+    private NamesService namesService;
 
 
     @GetMapping("/addressBook")
@@ -52,5 +57,18 @@ public class AddressBookController {
     public void deleteCustomerById(@PathVariable("id") Long id) {
 
          addressBookService.deleteCustomerById(id);
+    }
+
+    @PatchMapping("/addressBook")
+    private void updateResource( @RequestBody AddressBook addressBook)
+    {
+        addressBookService.updateResource(addressBook);
+
+    }
+
+    @GetMapping("/addressBook/addresstype/name")
+    public List<Names> findAddressByName() {
+
+        return namesService.findAddressByName();
     }
 }
