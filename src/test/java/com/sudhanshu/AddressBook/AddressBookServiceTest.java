@@ -19,6 +19,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -37,17 +38,17 @@ public class AddressBookServiceTest {
 
 
         List<Names> nameList = new ArrayList<Names>();
-        nameList.add(new Names(2l,"sudhanshu","semwal"));
+        nameList.add(new Names(2l, "sudhanshu", "semwal"));
         List<Address> AddressList = new ArrayList<Address>();
-        AddressList.add(new Address(1L,"102-street","sector-16","noida"));
+        AddressList.add(new Address(1L, "102-street", "sector-16", "noida"));
 
         List<AddressType> AddressTypeList = new ArrayList<AddressType>();
-        AddressTypeList.add(new AddressType(3L,"friends",nameList));
+        AddressTypeList.add(new AddressType(3L, "friends", nameList));
 
         when(repository.findAll()).thenReturn(Stream
                 .of(new AddressBook(3, "Danile", "31",
-                        "7795041021","sudhanshu@example",
-                        "201308",AddressTypeList,AddressList)).collect(Collectors.toList()));
+                        "7795041021", "sudhanshu@example",
+                        "201308", AddressTypeList, AddressList)).collect(Collectors.toList()));
 
         assertEquals(1, service.getAllCustomers().size());
     }
@@ -56,16 +57,16 @@ public class AddressBookServiceTest {
     public void saveAddressBookTest() {
 
         List<Names> nameList = new ArrayList<Names>();
-        nameList.add(new Names(2l,"sudhanshu","semwal"));
+        nameList.add(new Names(2l, "sudhanshu", "semwal"));
         List<Address> AddressList = new ArrayList<Address>();
-        AddressList.add(new Address(1L,"102-street","sector-16","noida"));
+        AddressList.add(new Address(1L, "102-street", "sector-16", "noida"));
 
         List<AddressType> AddressTypeList = new ArrayList<AddressType>();
-        AddressTypeList.add(new AddressType(3L,"friends",nameList));
+        AddressTypeList.add(new AddressType(3L, "friends", nameList));
 
         AddressBook addressBook = new AddressBook(3, "Danile", "31",
-                "7795041021","sudhanshu@example",
-                "201308",AddressTypeList,AddressList);
+                "7795041021", "sudhanshu@example",
+                "201308", AddressTypeList, AddressList);
         when(repository.save(addressBook)).thenReturn(addressBook);
 
         assertEquals(addressBook, service.save(addressBook));
@@ -74,16 +75,16 @@ public class AddressBookServiceTest {
     @Test
     public void deleteAddressBookTest() {
         List<Names> nameList = new ArrayList<Names>();
-        nameList.add(new Names(2l,"sudhanshu","semwal"));
+        nameList.add(new Names(2l, "sudhanshu", "semwal"));
         List<Address> AddressList = new ArrayList<Address>();
-        AddressList.add(new Address(1L,"102-street","sector-16","noida"));
+        AddressList.add(new Address(1L, "102-street", "sector-16", "noida"));
 
         List<AddressType> AddressTypeList = new ArrayList<AddressType>();
-        AddressTypeList.add(new AddressType(3L,"friends",nameList));
+        AddressTypeList.add(new AddressType(3L, "friends", nameList));
 
         AddressBook addressBook = new AddressBook(1L, "Danile", "31",
-                "7795041021","sudhanshu@example",
-                "201308",AddressTypeList,AddressList);
+                "7795041021", "sudhanshu@example",
+                "201308", AddressTypeList, AddressList);
         service.deleteCustomerById(addressBook.getId());
         verify(repository, times(1)).deleteById(addressBook.getId());
     }
@@ -93,21 +94,44 @@ public class AddressBookServiceTest {
     public void addressBookIdTest() {
 
         List<Names> nameList = new ArrayList<Names>();
-        nameList.add(new Names(2l,"sudhanshu","semwal"));
+        nameList.add(new Names(2l, "sudhanshu", "semwal"));
         List<Address> AddressList = new ArrayList<Address>();
-        AddressList.add(new Address(1L,"102-street","sector-16","noida"));
+        AddressList.add(new Address(1L, "102-street", "sector-16", "noida"));
 
         List<AddressType> AddressTypeList = new ArrayList<AddressType>();
-        AddressTypeList.add(new AddressType(3L,"friends",nameList));
+        AddressTypeList.add(new AddressType(3L, "friends", nameList));
 
-        Long id =  3L;
+        Long id = 3L;
 
         AddressBook addressBook = new AddressBook(3, "Danile", "31",
-                "7795041021","sudhanshu@example",
-                "201308",AddressTypeList,AddressList);
+                "7795041021", "sudhanshu@example",
+                "201308", AddressTypeList, AddressList);
 
         when(repository.findCustomerById(id)).thenReturn(addressBook);
 
         assertEquals(addressBook, service.findCustomerById(id));
+    }
+
+    @Test
+    public void updateAddressBookIdTest() {
+
+        List<Names> nameList = new ArrayList<Names>();
+        nameList.add(new Names(2l, "sudhanshu", "semwal"));
+        List<Address> AddressList = new ArrayList<Address>();
+        AddressList.add(new Address(1L, "102-street", "sector-16", "noida"));
+
+        List<AddressType> AddressTypeList = new ArrayList<AddressType>();
+        AddressTypeList.add(new AddressType(3L, "friends", nameList));
+
+        AddressBook addressBook = new AddressBook(3, "Danile", "31",
+                "7795041021", "sudhanshu@example",
+                "201308", AddressTypeList, AddressList);
+
+
+        when(repository.save(addressBook)).thenReturn(addressBook);
+
+        assertEquals(addressBook.getEmailId(), "service.save(addressBook)");
+
+
     }
 }
