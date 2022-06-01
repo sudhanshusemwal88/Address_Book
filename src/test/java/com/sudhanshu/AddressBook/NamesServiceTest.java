@@ -1,7 +1,7 @@
 package com.sudhanshu.AddressBook;
 
 
-import com.sudhanshu.AddressBook.Service.NamesService;
+import com.sudhanshu.AddressBook.service.NamesService;
 import com.sudhanshu.AddressBook.entity.Names;
 import com.sudhanshu.AddressBook.repository.NamesRepository;
 import org.junit.Test;

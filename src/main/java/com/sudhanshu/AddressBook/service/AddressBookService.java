@@ -1,14 +1,11 @@
-package com.sudhanshu.AddressBook.Service;
+package com.sudhanshu.AddressBook.service;
 
 
 import com.sudhanshu.AddressBook.entity.AddressBook;
-import com.sudhanshu.AddressBook.exceptions.ResourceNotFoundException;
 import com.sudhanshu.AddressBook.repository.AddressBookRepository;
 import one.util.streamex.StreamEx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

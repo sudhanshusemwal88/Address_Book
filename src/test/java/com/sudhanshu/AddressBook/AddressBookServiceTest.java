@@ -1,7 +1,7 @@
 package com.sudhanshu.AddressBook;
 
 
-import com.sudhanshu.AddressBook.Service.AddressBookService;
+import com.sudhanshu.AddressBook.service.AddressBookService;
 import com.sudhanshu.AddressBook.entity.Address;
 import com.sudhanshu.AddressBook.entity.AddressBook;
 import com.sudhanshu.AddressBook.entity.AddressType;
@@ -19,7 +19,6 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

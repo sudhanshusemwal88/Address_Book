@@ -1,7 +1,7 @@
 package com.sudhanshu.AddressBook.controller;
 
-import com.sudhanshu.AddressBook.Service.AddressBookService;
-import com.sudhanshu.AddressBook.Service.NamesService;
+import com.sudhanshu.AddressBook.service.AddressBookService;
+import com.sudhanshu.AddressBook.service.NamesService;
 import com.sudhanshu.AddressBook.entity.AddressBook;
 import com.sudhanshu.AddressBook.entity.Names;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class AddressBookController {
     }
 
     @PutMapping("/addressBook")
-    private AddressBook update(@RequestBody AddressBook addressBook)
+    public AddressBook update(@RequestBody AddressBook addressBook)
     {
         addressBookService.saveOrUpdate(addressBook);
         return addressBook;
@@ -60,7 +60,7 @@ public class AddressBookController {
     }
 
     @PatchMapping("/addressBook")
-    private void updateResource( @RequestBody AddressBook addressBook)
+    public void updateResource( @RequestBody AddressBook addressBook)
     {
         addressBookService.updateResource(addressBook);
 

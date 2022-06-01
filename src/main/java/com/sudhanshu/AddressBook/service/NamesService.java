@@ -1,4 +1,4 @@
-package com.sudhanshu.AddressBook.Service;
+package com.sudhanshu.AddressBook.service;
 
 import com.sudhanshu.AddressBook.entity.Names;
 import com.sudhanshu.AddressBook.repository.NamesRepository;
