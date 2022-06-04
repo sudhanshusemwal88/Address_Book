@@ -21,7 +21,7 @@ public class AddressBookService {
 
     }
 
-    public AddressBook save(AddressBook addressBook)
+    public AddressBook saveOrUpdate(AddressBook addressBook)
     {
         return addressBookRepository.save(addressBook);
 
@@ -44,10 +44,10 @@ public class AddressBookService {
          return addressBook;
     }
 
-    public void saveOrUpdate(AddressBook addressBook)
+   /* public void saveOrUpdate(AddressBook addressBook)
     {
         addressBookRepository.save(addressBook);
-    }
+    }*/
 
     public void deleteCustomerById(Long id)
     {

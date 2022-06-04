@@ -68,7 +68,7 @@ public class AddressBookServiceTest {
                 "201308", AddressTypeList, AddressList);
         when(repository.save(addressBook)).thenReturn(addressBook);
 
-        assertEquals(addressBook, service.save(addressBook));
+        assertEquals(addressBook, service.saveOrUpdate(addressBook));
     }
 
     @Test
@@ -129,7 +129,7 @@ public class AddressBookServiceTest {
 
         when(repository.save(addressBook)).thenReturn(addressBook);
 
-        assertEquals(addressBook.getEmailId(), "service.save(addressBook)");
+        assertEquals(addressBook, service.saveOrUpdate(addressBook));
 
 
     }

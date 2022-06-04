@@ -28,7 +28,7 @@ public class AddressBookController {
 
     @PostMapping("/addressBook")
     public Long createAddressBook(@RequestBody AddressBook addressBook) {
-         addressBookService.save(addressBook);
+         addressBookService.saveOrUpdate(addressBook);
 
         return addressBook.getId();
     }
@@ -47,10 +47,10 @@ public class AddressBookController {
     }
 
     @PutMapping("/addressBook")
-    public AddressBook update(@RequestBody AddressBook addressBook)
+    public Long update(@RequestBody AddressBook addressBook)
     {
         addressBookService.saveOrUpdate(addressBook);
-        return addressBook;
+        return addressBook.getId();
     }
 
     @DeleteMapping("/addressBook/id/{id}")
